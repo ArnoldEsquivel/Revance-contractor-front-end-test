@@ -24,18 +24,18 @@
         if (newTask.trim()) {
             todos = [...todos, { text: newTask.trim(), done: false }];
             newTask = "";
-            triggerToast("Tarea agregada.", "success");
+            triggerToast("Task added successfully.", "success");
         } else {
-            triggerToast("No puedes agregar una tarea vacía.", "error");
+            triggerToast("Please enter a task.", "error");
         }
     }
 
     function toggleTodo(index) {
         todos[index].done = !todos[index].done;
         if (todos[index].done) {
-            triggerToast("Tarea completada.", "success");
+            triggerToast("Task marked as complete.", "success");
         } else {
-            triggerToast("Tarea marcada como incompleta.", "error");
+            triggerToast("Task marked as incomplete.", "error");
         }
     }
 
