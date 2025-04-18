@@ -4,6 +4,10 @@
     let todos = [];
     let newTask = "";
     let today = new Date();
+    let showToast = false;
+    let toastMessage = "";
+    let toastTimeout;
+    let color = "";
 
     let month, fullDate;
 
@@ -17,12 +21,36 @@
     });
 
     function addTodo() {
-        todos = [...todos, { text: newTask.trim(), done: false }];
-        newTask = "";
+        if (newTask.trim()) {
+            todos = [...todos, { text: newTask.trim(), done: false }];
+            newTask = "";
+            triggerToast("Tarea agregada.", "success");
+        } else {
+            triggerToast("No puedes agregar una tarea vacía.", "error");
+        }
     }
 
     function toggleTodo(index) {
         todos[index].done = !todos[index].done;
+        if (todos[index].done) {
+            triggerToast("Tarea completada.", "success");
+        } else {
+            triggerToast("Tarea marcada como incompleta.", "error");
+        }
+    }
+
+    function triggerToast(message, type) {
+        toastMessage = message;
+        showToast = true;
+
+        color = type === "success" ? "bg-green-500" : "bg-red-500";
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            
+            showToast = false;
+        }, 3000);
+
+        document.querySelector('.toast').className = `fixed top-6 left-1/2 transform -translate-x-1/2 ${color} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-opacity duration-300`;
     }
 </script>
 
@@ -105,4 +133,14 @@
             </button>
         </div>
     </div>
+
+    {#if showToast}
+        <div
+            class="fixed top-6 left-1/2 transform -translate-x-1/2 text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-opacity duration-300"
+            class:bg-green-500={color === "bg-green-500"}
+            class:bg-red-500={color === "bg-red-500"}
+        >
+            {toastMessage}
+        </div>
+    {/if}
 </div>
