@@ -1,0 +1,54 @@
+:root {
+    --gradient-color-1: #7bc4ff;
+    --gradient-color-2: #b2b8fcab;
+    --gradient-color-3: #ffb2fc8d;
+    --gradient-color-4: #c3ebffe2;
+    --gradient-color-5: #f6f1fb;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top right,
+            var(--gradient-color-1),
+            var(--gradient-color-2),
+            var(--gradient-color-3),
+            var(--gradient-color-4),
+            var(--gradient-color-5));
+    background-blend-mode: lighten;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.logo-container {
+    background: white;
+    border-radius: 66px;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 66px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.logo-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+.logo-container img {
+    width: 99px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.logo-container span {
+    font-size: 24px;
+    color: black;
+    font-weight: 500;
+}
